@@ -74,8 +74,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  unsigned char test[]={0x40,0x79,0x24,0x30,0x19,0x12,0x02,0x78,0x00,0x10};
-  int j;
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -88,7 +87,11 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  lcd_init();
+  lcd_put_cur(0,0);
+  lcd_send_string("ahhaaha");
+  lcd_put_cur(1,0);
+  lcd_send_string("LRAI mat CROWWW");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -96,11 +99,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-for(j=0;j<10;j++){
 
-GPIOA->ODR=test[j];
-
-HAL_Delay(1000);}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -159,13 +158,13 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
-                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4
+                          |GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PA0 PA1 PA2 PA3
-                           PA4 PA5 PA6 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
-                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6;
+  /*Configure GPIO pins : PA1 PA2 PA3 PA4
+                           PA5 PA6 PA7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4
+                          |GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
